@@ -15,7 +15,6 @@ public class UserInfoDetailService implements UserDetailsService {
 
     @Autowired
     private UserRepository userRepository;
-
     @Autowired
     private PasswordEncoder passwordEncoder;
 
@@ -25,10 +24,9 @@ public class UserInfoDetailService implements UserDetailsService {
         return userInfo.map(UserInfoDetails::new)
                 .orElseThrow(() -> new UsernameNotFoundException("user not found " + username));
     }
-
     public String addUser(UserInfo userInfo) {
         userInfo.setPassword(passwordEncoder.encode(userInfo.getPassword()));
         userRepository.save(userInfo);
-        return "User added to system sucessfully. ";
+        return "User added to system sucessfully.";
     }
 }

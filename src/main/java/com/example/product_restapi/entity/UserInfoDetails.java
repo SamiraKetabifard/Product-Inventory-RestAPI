@@ -14,6 +14,7 @@ public class UserInfoDetails implements UserDetails {
     private String password;
     private List<GrantedAuthority> authorities;
 
+    // Constructor to convert UserInfo entity to UserDetails-compatible format for Spring Security
     public UserInfoDetails(UserInfo userInfo) {
         name = userInfo.getUsername();
         password = userInfo.getPassword();
@@ -21,20 +22,18 @@ public class UserInfoDetails implements UserDetails {
                 .map(SimpleGrantedAuthority::new)
                 .collect(Collectors.toList());
     }
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return authorities;
+    }
+    @Override
+    public String getUsername() {
+        return name;
     }
 
     @Override
     public String getPassword() {
         return password;
-    }
-
-    @Override
-    public String getUsername() {
-        return name;
     }
 
     @Override

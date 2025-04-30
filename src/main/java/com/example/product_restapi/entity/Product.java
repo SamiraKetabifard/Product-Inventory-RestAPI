@@ -4,16 +4,16 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Data
-@Entity
-@Getter
-@Setter
-@Table(name="product_item")
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
+@Table(name = "product_item")
 public class Product {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String name;
     private Double price;
 }

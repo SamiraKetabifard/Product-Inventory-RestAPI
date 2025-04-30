@@ -19,38 +19,33 @@ public class ProductController {
     @Autowired
     UserInfoDetailService userInfoDetailService;
 
+    @PostMapping("/newUser")
+    public String addNewUser(@RequestBody UserInfo userInfo) {
+        return userInfoDetailService.addUser(userInfo);
+    }
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @PostMapping("/product/add")
     public Product addProductItem(@RequestBody Product product) {
         return productService.addProduct(product);
     }
-
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN', 'ROLE_USER')")
     @GetMapping("/product/get")
     public List<Product> getAllProductItems() {
         return productService.getAllProducts();
     }
-
     @PreAuthorize("hasAnyAuthority('ROLE_USER', 'ROLE_ADMIN')")
     @GetMapping("/product/getById")
     public List<Product> getProductsByIds(@RequestParam List<Long> ids) {
         return productService.getProductsByIds(ids);
     }
-
-    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @DeleteMapping("/product/delete/{id}")
     public void deleteProductItem(@PathVariable Long id) {
         productService.deleteProduct(id);
     }
-
-    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @PutMapping("/product/update/{id}")
     public Product updateProductItem(@PathVariable Long id, @RequestBody Product product) {
         return productService.updateProduct(id, product);
-    }
-
-    @PostMapping("/newUser")
-    public String addNewUser(@RequestBody UserInfo userInfo) {
-        return userInfoDetailService.addUser(userInfo);
     }
 }
