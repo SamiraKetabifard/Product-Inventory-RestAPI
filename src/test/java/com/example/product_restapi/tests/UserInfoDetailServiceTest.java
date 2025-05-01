@@ -1,7 +1,7 @@
 package com.example.product_restapi.tests;
 
 import com.example.product_restapi.entity.UserInfo;
-import com.example.product_restapi.repository.UserRepository;
+import com.example.product_restapi.repository.UserInfoRepository;
 import com.example.product_restapi.service.UserInfoDetailService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -18,7 +18,7 @@ import static org.mockito.Mockito.*;
 class UserInfoDetailServiceTest {
 
     @Mock
-    private UserRepository userRepository;
+    private UserInfoRepository userRepository;
 
     @Mock
     private PasswordEncoder passwordEncoder;
