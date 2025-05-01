@@ -23,6 +23,8 @@ public class UserInfoDetailService implements UserDetailsService {
         Optional<UserInfo> userInfo = userInfoRepository.findByUsername(username);
         return userInfo.map(UserInfoDetails::new)
                 .orElseThrow(() -> new UsernameNotFoundException("user not found " + username));
+        //return userInfo.map(user -> new UserInfoDetails(user))
+        //               .orElseThrow(() -> new UsernameNotFoundException("user not found " + username));
     }
     public String addUser(UserInfo userInfo) {
         userInfo.setPassword(passwordEncoder.encode(userInfo.getPassword()));
