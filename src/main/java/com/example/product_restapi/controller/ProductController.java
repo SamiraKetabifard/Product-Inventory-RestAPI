@@ -15,7 +15,6 @@ public class ProductController {
 
     @Autowired
     ProductService productService;
-
     @Autowired
     UserInfoDetailService userInfoDetailService;
 
@@ -33,6 +32,7 @@ public class ProductController {
     public List<Product> getAllProductItems() {
         return productService.getAllProducts();
     }
+    //http://localhost:8080/api/product/getById?ids=2
     @PreAuthorize("hasAnyAuthority('ROLE_USER', 'ROLE_ADMIN')")
     @GetMapping("/product/getById")
     public List<Product> getProductsByIds(@RequestParam List<Long> ids) {

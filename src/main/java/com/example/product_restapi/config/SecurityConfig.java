@@ -25,10 +25,10 @@ public class SecurityConfig {
         return new UserInfoDetailService(); // Loads user details from custom service
     }
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain securityFilterChain (HttpSecurity http) throws Exception {
         return http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth ->
-                        auth.requestMatchers("/api/grocery/**").authenticated() // Protect specific paths
+                        auth.requestMatchers("/api/product/**").authenticated() // Protect specific paths
                                 .anyRequest().permitAll()) // Allow all other requests
                 .httpBasic(Customizer.withDefaults()) // Use basic authentication
                 .build();
