@@ -12,19 +12,19 @@ public class ProductService {
     @Autowired
     private ProductRepository productRepository;
 
-    public Product addProduct(Product product) {
+    public Product addProduct(Product product){
         return productRepository.save(product);
     }
-    public List<Product> getAllProducts() {
+    public List<Product> getAllProducts(){
         return productRepository.findAll();
     }
-    public void deleteProduct(Long id) {
+    public void deleteProduct(Long id){
         productRepository.deleteById(id);
     }
-    public List<Product> getProductsByIds(List<Long> ids) {
+    public List<Product> getProductsByIds(List<Long> ids){
         return productRepository.findAllById(ids);
     }
-    public Product updateProduct(Long id, Product productDetails) {
+    public Product updateProduct(Long id, Product productDetails){
         Product product = productRepository.findById(id).orElseThrow();
         product.setName(productDetails.getName());
         product.setPrice(productDetails.getPrice());

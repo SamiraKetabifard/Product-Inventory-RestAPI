@@ -29,6 +29,6 @@ public class UserInfoDetailService implements UserDetailsService {
     public String addUser(UserInfo userInfo) {
         userInfo.setPassword(passwordEncoder.encode(userInfo.getPassword()));
         userInfoRepository.save(userInfo);
-        return "User added to system sucessfully.";
+        return "User added to system successfully.";
     }
 }
