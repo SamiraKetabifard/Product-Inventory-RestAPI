@@ -21,6 +21,10 @@ public class UserInfoDetails implements UserDetails {
         authorities = Arrays.stream(userInfo.getRoles().split(","))
                 .map(SimpleGrantedAuthority::new)//.map(role -> new SimpleGrantedAuthority(role))
                 .collect(Collectors.toList());
+        /*
+        authorities = Arrays.stream(userInfo.getRoles().split(",")) .
+        map(role -> new SimpleGrantedAuthority("ROLE_" + role.trim())) .collect(Collectors.toList());
+         */
     }
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

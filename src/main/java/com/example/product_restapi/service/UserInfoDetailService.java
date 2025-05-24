@@ -31,4 +31,12 @@ public class UserInfoDetailService implements UserDetailsService {
         userInfoRepository.save(userInfo);
         return "User added to system successfully.";
     }
+    /*
+    public String addUser(UserInfo userInfo) {
+      userInfo.setPassword(passwordEncoder.encode(userInfo.getPassword()));
+      userInfo.setRoles("USER"); //  "ADMIN" or "USER,ADMIN"
+      userInfoRepository.save(userInfo);
+      return "User added to system successfully.";
+    }
+     */
 }
