@@ -18,10 +18,11 @@ public class UserInfoDetails implements UserDetails {
     public UserInfoDetails(UserInfo userInfo) {
         name = userInfo.getUsername();
         password = userInfo.getPassword();
+        //Authority
         authorities = Arrays.stream(userInfo.getRoles().split(","))
                 .map(SimpleGrantedAuthority::new)//.map(role -> new SimpleGrantedAuthority(role))
                 .collect(Collectors.toList());
-        /*
+        /* Role
         authorities = Arrays.stream(userInfo.getRoles().split(",")) .
         map(role -> new SimpleGrantedAuthority("ROLE_" + role.trim())) .collect(Collectors.toList());
          */

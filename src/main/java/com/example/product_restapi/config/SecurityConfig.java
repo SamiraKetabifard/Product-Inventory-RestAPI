@@ -39,7 +39,7 @@ public class SecurityConfig {
     }
     // Used by Spring Security to authenticate users with username and password
     @Bean
-    public AuthenticationProvider authenticationProvider() {
+    public AuthenticationProvider authenticationProvider(){
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
         provider.setUserDetailsService(userDetailsService()); // Use custom user detail service
         provider.setPasswordEncoder(passwordEncoder()); // Use BCrypt for password check
