@@ -1,8 +1,7 @@
-package com.example.product_restapi;
+package com.example.product_restapi.service;
 
 import com.example.product_restapi.entity.UserInfo;
 import com.example.product_restapi.repository.UserInfoRepository;
-import com.example.product_restapi.service.UserInfoDetailService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -62,5 +61,31 @@ class UserInfoDetailServiceTest {
         assertEquals("User added to system successfully.", result.trim());
         verify(passwordEncoder, times(1)).encode("12");
         verify(userInfoRepository, times(1)).save(any(UserInfo.class));
+    }
+    @Test
+    void loadUserByUsername_WhenUserExists_ShouldReturnUserDetails() {
+        // Arrange
+        UserInfo userInfo = new UserInfo();
+        userInfo.setUsername("testuser");
+        userInfo.setPassword("encodedPassword");
+        userInfo.setRoles("ROLE_USER");
+        when(userInfoRepository.findByUsername("testuser")).thenReturn(Optional.of(userInfo));
+        // Act
+        var userDetails = userInfoDetailService.loadUserByUsername("testuser");
+        // Assert
+        assertEquals("testuser", userDetails.getUsername());
+        assertEquals("encodedPassword", userDetails.getPassword());
+        assertEquals(1, userDetails.getAuthorities().size());
+        assertTrue(userDetails.getAuthorities().stream()
+                .anyMatch(auth -> auth.getAuthority().equals("ROLE_USER")));
+    }
+    @Test
+    void loadUserByUsername_WhenUserNotExists_ShouldThrowException() {
+        // Arrange
+        when(userInfoRepository.findByUsername("nonexistent")).thenReturn(Optional.empty());
+        // Act & Assert
+        assertThrows(UsernameNotFoundException.class, () -> {
+            userInfoDetailService.loadUserByUsername("nonexistent");
+        });
     }
 }
