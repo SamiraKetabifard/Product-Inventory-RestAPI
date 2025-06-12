@@ -35,6 +35,6 @@ class SecurityIntegrationTest {
     @WithMockUser(roles = "ADMIN")
     void authenticatedAdminAccessToAdminEndpoint_ShouldSucceed() throws Exception {
         mockMvc.perform(post("/api/product/add"))
-                .andExpect(status().isBadRequest()); // BadRequest because request body is missing
+                .andExpect(status().isBadRequest());
     }
 }

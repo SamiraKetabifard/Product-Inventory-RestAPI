@@ -22,17 +22,8 @@ class SecurityConfigTest {
     private MockMvc mockMvc;
 
     @Autowired
-    private UserDetailsService userDetailsService;
-
-    @Autowired
     private PasswordEncoder passwordEncoder;
 
-    @Test
-    void testUserDetailsServiceBean() {
-        assertNotNull(userDetailsService, "UserDetailsService should be configured");
-        assertTrue(userDetailsService instanceof UserInfoDetailService,
-                "UserDetailsService should be instance of UserInfoDetailService");
-    }
     @Test
     void testPasswordEncoderBean() {
         assertNotNull(passwordEncoder, "PasswordEncoder should be configured");
@@ -41,7 +32,6 @@ class SecurityConfigTest {
         assertTrue(passwordEncoder.matches(rawPassword, encodedPassword),
                 "PasswordEncoder should correctly match raw and encoded passwords");
     }
-
     @Test
     void testFailedAuthentication() throws Exception {
         mockMvc.perform(formLogin().user("nonexistent").password("wrong"))

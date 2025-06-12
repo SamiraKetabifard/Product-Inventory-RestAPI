@@ -66,14 +66,14 @@ class UserInfoDetailServiceTest {
     void loadUserByUsername_WhenUserExists_ShouldReturnUserDetails() {
         // Arrange
         UserInfo userInfo = new UserInfo();
-        userInfo.setUsername("testuser");
+        userInfo.setUsername("samira");
         userInfo.setPassword("encodedPassword");
         userInfo.setRoles("ROLE_USER");
-        when(userInfoRepository.findByUsername("testuser")).thenReturn(Optional.of(userInfo));
+        when(userInfoRepository.findByUsername("samira")).thenReturn(Optional.of(userInfo));
         // Act
-        var userDetails = userInfoDetailService.loadUserByUsername("testuser");
+        var userDetails = userInfoDetailService.loadUserByUsername("samira");
         // Assert
-        assertEquals("testuser", userDetails.getUsername());
+        assertEquals("samira", userDetails.getUsername());
         assertEquals("encodedPassword", userDetails.getPassword());
         assertEquals(1, userDetails.getAuthorities().size());
         assertTrue(userDetails.getAuthorities().stream()
