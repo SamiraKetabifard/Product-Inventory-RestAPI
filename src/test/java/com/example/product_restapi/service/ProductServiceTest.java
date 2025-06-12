@@ -25,11 +25,11 @@ class ProductServiceTest {
     @Test
     void addProduct_ShouldReturnSavedProduct() {
         // Arrange
-        Product productToSave = new Product(null, "Test Product", 10.0);
+        Product product = new Product(null, "Test Product", 10.0);
         Product savedProduct = new Product(1L, "Test Product", 10.0);
-        when(productRepository.save(productToSave)).thenReturn(savedProduct);
+        when(productRepository.save(product)).thenReturn(savedProduct);
         // Act
-        Product result = productService.addProduct(productToSave);
+        Product result = productService.addProduct(product);
         // Assert
         assertEquals(1L, result.getId());
         assertEquals("Test Product", result.getName());
@@ -69,15 +69,15 @@ class ProductServiceTest {
     @Test
     void updateProduct_WhenProductExists_ShouldReturnUpdatedProduct() {
         // Arrange
-        Product existingProduct = new Product(1L, "Old Name", 10.0);
-        Product updateDetails = new Product(null, "New Name", 20.0);
+        Product existingProduct = new Product(1L, "mac laptop", 10.0);
+        Product updatedProduct = new Product(null, "asus laptop", 20.0);
         when(productRepository.findById(1L)).thenReturn(Optional.of(existingProduct));
         when(productRepository.save(existingProduct)).thenReturn(existingProduct);
         // Act
-        Product result = productService.updateProduct(1L, updateDetails);
+        Product result = productService.updateProduct(1L, updatedProduct);
         // Assert
         assertEquals(1L, result.getId());
-        assertEquals("New Name", result.getName());
+        assertEquals("asus laptop", result.getName());
         assertEquals(20.0, result.getPrice());
     }
     @Test
