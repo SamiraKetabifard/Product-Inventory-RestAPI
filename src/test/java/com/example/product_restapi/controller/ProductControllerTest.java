@@ -34,14 +34,11 @@ class ProductControllerTest {
         Product product = new Product(null, "Test Product", 10.0);
         Product savedProduct = new Product(1L, "Test Product", 10.0);
         when(productService.addProduct(product)).thenReturn(savedProduct);
-
         // Act
-        Product response = productController.addProductItem(product); // Changed from ResponseEntity<Product> to Product
-
+        Product response = productController.addProductItem(product);//Changed from ResponseEntity<Product> to Product
         // Assert
-        assertEquals(1L, response.getId()); // Removed status check
+        assertEquals(1L, response.getId());
     }
-
     @Test
     @WithMockUser(roles = "USER")
     void addProductItem_WithUserRole_ShouldReturnForbidden() {
@@ -50,7 +47,6 @@ class ProductControllerTest {
             productController.addProductItem(new Product());
         });
     }
-
     @Test
     @WithMockUser(roles = {"USER", "ADMIN"})
     void getAllProductItems_WithValidRoles_ShouldReturnProducts() {
@@ -58,14 +54,11 @@ class ProductControllerTest {
         Product product1 = new Product(1L, "Product 1", 10.0);
         Product product2 = new Product(2L, "Product 2", 20.0);
         when(productService.getAllProducts()).thenReturn(Arrays.asList(product1, product2));
-
         // Act
-        List<Product> response = productController.getAllProductItems(); // Changed from ResponseEntity<List<Product>> to List<Product>
-
+        List<Product> response = productController.getAllProductItems();
         // Assert
-        assertEquals(2, response.size()); // Removed status check
+        assertEquals(2, response.size());
     }
-
     @Test
     void getAllProductItems_WithoutAuthentication_ShouldReturnUnauthorized() {
         // Act & Assert
@@ -73,7 +66,6 @@ class ProductControllerTest {
             productController.getAllProductItems();
         });
     }
-
     @Test
     @WithMockUser(roles = {"USER", "ADMIN"})
     void getProductsByIds_WithValidRoles_ShouldReturnProducts() {
@@ -81,52 +73,41 @@ class ProductControllerTest {
         Product product1 = new Product(1L, "Product 1", 10.0);
         Product product2 = new Product(2L, "Product 2", 20.0);
         when(productService.getProductsByIds(Arrays.asList(1L, 2L))).thenReturn(Arrays.asList(product1, product2));
-
         // Act
-        List<Product> response = productController.getProductsByIds(Arrays.asList(1L, 2L)); // Changed from ResponseEntity<List<Product>> to List<Product>
-
+        List<Product> response = productController.getProductsByIds(Arrays.asList(1L, 2L));
         // Assert
-        assertEquals(2, response.size()); // Removed status check
+        assertEquals(2, response.size());
     }
-
     @Test
     @WithMockUser(roles = "ADMIN")
     void deleteProductItem_WithAdminRole_ShouldCallService() {
         // Arrange
         Long productId = 1L;
-
         // Act
         productController.deleteProductItem(productId);
-
         // Assert
         verify(productService).deleteProduct(productId);
     }
-
     @Test
     @WithMockUser(roles = "ADMIN")
     void updateProductItem_WithAdminRole_ShouldReturnUpdatedProduct() {
         // Arrange
-        Product updateDetails = new Product(null, "Updated Product", 15.0);
+        Product product = new Product(null, "Updated Product", 15.0);
         Product updatedProduct = new Product(1L, "Updated Product", 15.0);
-        when(productService.updateProduct(1L, updateDetails)).thenReturn(updatedProduct);
-
+        when(productService.updateProduct(1L, product)).thenReturn(updatedProduct);
         // Act
-        Product response = productController.updateProductItem(1L, updateDetails); // Changed from ResponseEntity<Product> to Product
-
+        Product response = productController.updateProductItem(1L, product);
         // Assert
-        assertEquals("Updated Product", response.getName()); // Removed status check
+        assertEquals("Updated Product", response.getName());
     }
-
     @Test
     void addNewUser_ShouldCallServiceAndReturnSuccessMessage() {
         // Arrange
         UserInfo userInfo = new UserInfo();
-        userInfo.setUsername("newuser");
+        userInfo.setUsername("samira");
         when(userInfoDetailService.addUser(userInfo)).thenReturn("User added to system successfully.");
-
         // Act
         String result = productController.addNewUser(userInfo);
-
         // Assert
         assertEquals("User added to system successfully.", result);
     }
