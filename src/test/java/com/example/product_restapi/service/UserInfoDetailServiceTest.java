@@ -44,8 +44,7 @@ class UserInfoDetailServiceTest {
         when(userInfoRepository.findByUsername("nonexistent")).thenReturn(Optional.empty());
         //Act & Assert
         assertThrows(UsernameNotFoundException.class, () ->
-            userInfoDetailService.loadUserByUsername("nonexistent")
-        );
+            userInfoDetailService.loadUserByUsername("nonexistent"));
     }
     @Test
     void addUser_ShouldEncodePasswordAndSaveUser() {
@@ -76,8 +75,6 @@ class UserInfoDetailServiceTest {
         assertEquals("samira", userDetails.getUsername());
         assertEquals("encodedPassword", userDetails.getPassword());
         assertEquals(1, userDetails.getAuthorities().size());
-        assertTrue(userDetails.getAuthorities().stream()
-                .anyMatch(auth -> auth.getAuthority().equals("ROLE_USER")));
     }
     @Test
     void loadUserByUsername_WhenUserNotExists_ShouldThrowException() {

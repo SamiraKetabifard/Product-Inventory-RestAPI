@@ -20,7 +20,7 @@ public class UserInfoDetails implements UserDetails {
         password = userInfo.getPassword();
         //Authority
         authorities = Arrays.stream(userInfo.getRoles().split(","))
-                .map(SimpleGrantedAuthority::new)//.map(role -> new SimpleGrantedAuthority(role))
+                .map(SimpleGrantedAuthority::new)
                 .collect(Collectors.toList());
         /* Role
         authorities = Arrays.stream(userInfo.getRoles().split(",")) .
@@ -35,27 +35,22 @@ public class UserInfoDetails implements UserDetails {
     public String getUsername() {
         return name;
     }
-
     @Override
     public String getPassword() {
         return password;
     }
-
     @Override
     public boolean isAccountNonExpired() {
         return true;
     }
-
     @Override
     public boolean isAccountNonLocked() {
         return true;
     }
-
     @Override
     public boolean isCredentialsNonExpired() {
         return true;
     }
-
     @Override
     public boolean isEnabled() {
         return true;
