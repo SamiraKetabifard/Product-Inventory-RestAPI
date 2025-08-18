@@ -25,14 +25,14 @@ class ProductServiceTest {
     @Test
     void addProduct_ShouldReturnSavedProduct() {
         // Arrange
-        Product product = new Product(null, "Test Product", 10.0);
-        Product savedProduct = new Product(1L, "Test Product", 10.0);
+        Product product = new Product(null, "mobile", 10.0);
+        Product savedProduct = new Product(1L, "mobile", 10.0);
         when(productRepository.save(product)).thenReturn(savedProduct);
         // Act
         Product result = productService.addProduct(product);
         // Assert
         assertEquals(1L, result.getId());
-        assertEquals("Test Product", result.getName());
+        assertEquals("mobile", result.getName());
         assertEquals(10.0, result.getPrice());
     }
     @Test
