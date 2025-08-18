@@ -60,7 +60,8 @@ class ProductServiceTest {
         // Arrange
         Product product1 = new Product(1L, "Product 1", 10.0);
         Product product2 = new Product(2L, "Product 2", 20.0);
-        when(productRepository.findAllById(Arrays.asList(1L, 2L))).thenReturn(Arrays.asList(product1, product2));
+        when(productRepository.findAllById(Arrays.asList(1L, 2L))).thenReturn
+                (Arrays.asList(product1, product2));
         // Act
         List<Product> products = productService.getProductsByIds(Arrays.asList(1L, 2L));
         // Assert
