@@ -29,7 +29,12 @@ A secure Spring Boot REST API for managing product inventory with Basic Authenti
 👥 Auth Endpoints
 `POST /api/newUser`  
 Register a new user (auto-assigns USER role)
-
+{
+    "username": "admin2",
+    "password": "1234",
+    "email": "a2@gmail.com",
+    "roles": "ADMIN"
+}
 📦 Product Endpoints (ADMIN Only)
 `POST /api/product/add`  
 Add new product  
