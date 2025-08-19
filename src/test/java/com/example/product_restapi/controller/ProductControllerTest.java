@@ -31,11 +31,11 @@ class ProductControllerTest {
     @WithMockUser(roles = "ADMIN")
     void addProductItem_WithAdminRole_ShouldReturnProduct() {
         // Arrange
-        Product product = new Product(null, "Test Product", 10.0);
-        Product savedProduct = new Product(1L, "Test Product", 10.0);
+        Product product = new Product(null, "mobile", 10.0);
+        Product savedProduct = new Product(1L, "mobile", 10.0);
         when(productService.addProduct(product)).thenReturn(savedProduct);
         // Act
-        Product response = productController.addProductItem(product);//Changed from ResponseEntity<Product> to Product
+        Product response = productController.addProductItem(product);
         // Assert
         assertEquals(1L, response.getId());
     }

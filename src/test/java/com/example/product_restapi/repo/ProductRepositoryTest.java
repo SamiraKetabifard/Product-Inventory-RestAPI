@@ -26,15 +26,15 @@ class ProductRepositoryTest {
         Product product2 = new Product(null, "Product 2", 20.0);
         productRepository.saveAll(Arrays.asList(product1, product2));
         // Act
-        List<Product> products = productRepository.findAllById(Arrays.asList(product1.getId(), product2.getId()));
+        List<Product> products = productRepository.findAllById
+                (Arrays.asList(product1.getId(), product2.getId()));
         // Assert
         assertEquals(2, products.size());
     }
     @Test
     void findAllById_WhenProductsNotExist_ShouldReturnEmptyList() {
-        // Act
+
         List<Product> products = productRepository.findAllById(Arrays.asList(999L, 1000L));
-        // Assert
         assertTrue(products.isEmpty());
     }
 }

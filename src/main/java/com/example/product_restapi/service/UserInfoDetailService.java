@@ -15,12 +15,12 @@ public class UserInfoDetailService implements UserDetailsService {
 
     @Autowired
     private UserInfoRepository userInfoRepository;
-
     @Autowired
     private PasswordEncoder passwordEncoder;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException{
+
         Optional<UserInfo> userInfo = userInfoRepository.findByUsername(username);
         return userInfo.map(UserInfoDetails::new)
                 .orElseThrow(() -> new UsernameNotFoundException("user not found " + username));

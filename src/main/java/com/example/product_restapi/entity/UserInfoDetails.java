@@ -24,11 +24,11 @@ public class UserInfoDetails implements UserDetails {
                 .collect(Collectors.toList());
         /* Role
         authorities = Arrays.stream(userInfo.getRoles().split(",")) .
-        map(role -> new SimpleGrantedAuthority("ROLE_" + role.trim())) .collect(Collectors.toList());
+        map(role -> new SimpleGrantedAuthority("ROLE_" + role.trim())).collect(Collectors.toList());
          */
     }
     @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
+    public Collection<? extends GrantedAuthority> getAuthorities(){
         return authorities;
     }
     @Override

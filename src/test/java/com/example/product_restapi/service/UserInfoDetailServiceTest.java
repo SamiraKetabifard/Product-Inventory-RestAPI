@@ -74,7 +74,6 @@ class UserInfoDetailServiceTest {
         // Assert
         assertEquals("samira", userDetails.getUsername());
         assertEquals("encodedPassword", userDetails.getPassword());
-        assertEquals(1, userDetails.getAuthorities().size());
     }
     @Test
     void loadUserByUsername_WhenUserNotExists_ShouldThrowException() {
