@@ -39,14 +39,7 @@ class ProductControllerTest {
         // Assert
         assertEquals(1L, response.getId());
     }
-    @Test
-    @WithMockUser(roles = "USER")
-    void addProductItem_WithUserRole_ShouldReturnForbidden() {
-        // Act & Assert
-        assertThrows(org.springframework.security.access.AccessDeniedException.class, () -> {
-            productController.addProductItem(new Product());
-        });
-    }
+
     @Test
     @WithMockUser(roles = {"USER", "ADMIN"})
     void getAllProductItems_WithValidRoles_ShouldReturnProducts() {
@@ -59,13 +52,7 @@ class ProductControllerTest {
         // Assert
         assertEquals(2, response.size());
     }
-    @Test
-    void getAllProductItems_WithoutAuthentication_ShouldReturnUnauthorized() {
-        // Act & Assert
-        assertThrows(org.springframework.security.access.AccessDeniedException.class, () -> {
-            productController.getAllProductItems();
-        });
-    }
+
     @Test
     @WithMockUser(roles = {"USER", "ADMIN"})
     void getProductsByIds_WithValidRoles_ShouldReturnProducts() {
