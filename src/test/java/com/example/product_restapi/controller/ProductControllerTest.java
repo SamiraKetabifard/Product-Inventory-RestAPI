@@ -39,7 +39,6 @@ class ProductControllerTest {
         // Assert
         assertEquals(1L, response.getId());
     }
-
     @Test
     @WithMockUser(roles = {"USER", "ADMIN"})
     void getAllProductItems_WithValidRoles_ShouldReturnProducts() {
@@ -52,7 +51,6 @@ class ProductControllerTest {
         // Assert
         assertEquals(2, response.size());
     }
-
     @Test
     @WithMockUser(roles = {"USER", "ADMIN"})
     void getProductsByIds_WithValidRoles_ShouldReturnProducts() {

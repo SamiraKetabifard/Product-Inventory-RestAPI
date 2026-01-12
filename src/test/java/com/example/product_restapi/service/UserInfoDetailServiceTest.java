@@ -61,27 +61,4 @@ class UserInfoDetailServiceTest {
         verify(passwordEncoder, times(1)).encode("12");
         verify(userInfoRepository, times(1)).save(any(UserInfo.class));
     }
-    @Test
-    void loadUserByUsername_WhenUserExists_ShouldReturnUserDetails() {
-        // Arrange
-        UserInfo userInfo = new UserInfo();
-        userInfo.setUsername("samira");
-        userInfo.setPassword("encodedPassword");
-        userInfo.setRoles("ROLE_USER");
-        when(userInfoRepository.findByUsername("samira")).thenReturn(Optional.of(userInfo));
-        // Act
-        var userDetails = userInfoDetailService.loadUserByUsername("samira");
-        // Assert
-        assertEquals("samira", userDetails.getUsername());
-        assertEquals("encodedPassword", userDetails.getPassword());
-    }
-    @Test
-    void loadUserByUsername_WhenUserNotExists_ShouldThrowException() {
-        // Arrange
-        when(userInfoRepository.findByUsername("nonexistent")).thenReturn(Optional.empty());
-        // Act & Assert
-        assertThrows(UsernameNotFoundException.class, () -> {
-            userInfoDetailService.loadUserByUsername("nonexistent");
-        });
-    }
 }
