@@ -48,11 +48,8 @@ class ProductServiceTest {
     }
     @Test
     void deleteProduct_ShouldCallRepositoryDelete() {
-        // Arrange
         Long productId = 1L;
-        // Act
         productService.deleteProduct(productId);
-        // Assert
         verify(productRepository).deleteById(productId);
     }
     @Test
