@@ -8,14 +8,14 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class UserInfoDetails implements UserDetails {
+public class UserInfoDetails implements UserDetails{
 
     private String name;
     private String password;
     private List<GrantedAuthority> authorities;
 
     // Constructor to convert UserInfo entity to UserDetails-compatible format for Spring Security
-    public UserInfoDetails(UserInfo userInfo) {
+    public UserInfoDetails(UserInfo userInfo){
         name = userInfo.getUsername();
         password = userInfo.getPassword();
         // Convert comma-separated roles from DB to Spring Security Roles with "ROLE_" prefix
