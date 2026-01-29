@@ -82,7 +82,7 @@ class ProductServiceTest {
     void updateProduct_WhenProductNotExists_ShouldThrowException() {
         // Arrange
         when(productRepository.findById(1L)).thenReturn(Optional.empty());
-        // Act & Assert
+
         assertThrows(RuntimeException.class, () -> {
             productService.updateProduct(1L, new Product());
         });
