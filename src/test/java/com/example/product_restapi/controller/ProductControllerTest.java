@@ -45,7 +45,7 @@ class ProductControllerTest {
         // Arrange
         Product product1 = new Product(1L, "Product 1", 10.0);
         Product product2 = new Product(2L, "Product 2", 20.0);
-        when(productService.getAllProducts()).thenReturn(Arrays.asList(product1, product2));
+        when(productService.getAllProducts()).thenReturn(List.of(product1, product2));
         // Act
         List<Product> response = productController.getAllProductItems();
         // Assert
